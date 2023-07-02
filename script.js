@@ -104,3 +104,23 @@ const observe = new IntersectionObserver(a, {
   rootMargin: '20px',
 });
 observe.observe(header);
+
+const b = function (s) {
+  const [b] = s;
+  if (!b.isIntersecting) return;
+  else {
+    b.target.classList.remove('section--hidden');
+    observe.unobserve(b.target);
+  }
+};
+
+const newoberserver = new IntersectionObserver(b, {
+  root: null,
+  threshold: 0.15,
+});
+
+const section = document.querySelectorAll('.section');
+section.forEach(function (e) {
+  e.classList.add('section--hidden');
+  newoberserver.observe(e);
+});

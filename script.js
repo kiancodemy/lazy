@@ -88,3 +88,19 @@ navv.addEventListener('mouseout', function (e) {
     });
   }
 });
+const header = document.querySelector('header');
+const a = function (s) {
+  const [b] = s;
+  if (!b.isIntersecting) {
+    navv.classList.add('sticky');
+  } else {
+    navv.classList.remove('sticky');
+  }
+};
+
+const observe = new IntersectionObserver(a, {
+  root: null,
+  threshold: 0,
+  rootMargin: '20px',
+});
+observe.observe(header);

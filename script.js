@@ -45,3 +45,46 @@ nav_link.forEach(a => {
     create.scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tab_container = document.querySelector('.operations__tab-container');
+const tab_content = document.querySelectorAll('.operations__content');
+tab_container.addEventListener('click', function (e) {
+  const click = e.target.closest('.operations__tab');
+  if (!click) return;
+  console.log(click);
+  tabs.forEach(a => a.classList.remove('operations__tab--active'));
+  click.classList.add('operations__tab--active');
+  tab_content.forEach(a => a.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${click.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+const navv = document.querySelector('.nav');
+navv.addEventListener('mouseover', function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const linkk = e.target;
+    const sibling = linkk.closest('.nav').querySelectorAll('.nav__link');
+    const logo = linkk.closest('.nav').querySelector('img');
+    sibling.forEach(a => {
+      if (a !== linkk) {
+        a.style.opacity = 0.5;
+      }
+      logo.style.opacity = 0.5;
+    });
+  }
+});
+navv.addEventListener('mouseout', function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const linkk = e.target;
+    const sibling = linkk.closest('.nav').querySelectorAll('.nav__link');
+    const logo = linkk.closest('.nav').querySelector('img');
+    sibling.forEach(a => {
+      if (a !== linkk) {
+        a.style.opacity = 1;
+      }
+      logo.style.opacity = 1;
+    });
+  }
+});

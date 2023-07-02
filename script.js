@@ -144,3 +144,34 @@ const picobserve = new IntersectionObserver(c, {
 allimage.forEach(function (e) {
   picobserve.observe(e);
 });
+const slide = document.querySelectorAll('.slide');
+slide.forEach(function (a, b) {
+  a.style.transform = `translateX(${b * 100}%)`;
+});
+const max = slide.length;
+const left = document.querySelector('.slider__btn--left');
+const right = document.querySelector('.slider__btn--right');
+let cur = 0;
+left.addEventListener('click', function () {
+  if (cur == 0) {
+    cur = max - 1;
+  } else {
+    cur--;
+  }
+
+  slide.forEach(function (a, b) {
+    a.style.transform = `translateX(${(b - cur) * 100}%)`;
+  });
+});
+
+right.addEventListener('click', function () {
+  if (cur === max - 1) {
+    cur = 0;
+  } else {
+    cur++;
+  }
+
+  slide.forEach(function (a, b) {
+    a.style.transform = `translateX(${(b - cur) * 100}%)`;
+  });
+});
